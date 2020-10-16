@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <header class="header">
+        <ul> 
+            <li>
+                <a href="#high-score">View High Score</a>
+            </li>
+            <li>
+                Time: <span class="timer" id="timer">0</span>
+            </li>
+        </ul>
+    </header>
+    <div class="the-quiz">
+        <h1 class="quiz-title" id="quiz-header">Javascript Fundamental Quiz</h1>
+        <h3 class="quiz-info" id="quiz-text">This is a short quiz about Javascript basics. <br>Your score at the end will be the amount of time left on the clock. <br>Every missed answer will cost you 10 seconds!</h3>
+        <ul id="quiz button">
+            <button class= "btn" id="start-quiz">Start</button>
+        </ul>
+    </div>
+    <div class= "high-score-screen">
+        <ul class="high-score" id="high-score">
+
+        </ul>
+    </div>
+    <script src="assets/js/script.js"></script>
+
     
 </body>
 </html>
