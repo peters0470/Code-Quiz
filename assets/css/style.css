@@ -28,7 +28,7 @@ h3 {
     list-style: none;
     text-align: center;
 }
-.btn {
+.btn, .btn-submit {
     margin: 5px;
     border: none;
     font-size: 1.2rem;
@@ -41,6 +41,19 @@ h3 {
     color: whitesmoke;
     text-align: center;
 }    
+ #quiz-box li {
+     font-size: xx-large;
+ }
+.btn-quizbtn:hover, .btn-submit:hover {
+    background-color: plum;
+}
+.text-input {
+    width: 110px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: small;
+}
 .btn:hover {
     background-color: plum;
 }
