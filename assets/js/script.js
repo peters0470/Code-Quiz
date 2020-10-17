@@ -4,7 +4,7 @@ var quizButton = document.querySelector(".btn");
 var timer = document.querySelector("#timer");
 var quizHeader = document.querySelector("#quiz-header");
 var quizText = document.querySelector("#quiz-text");
-var highScore = doument.querySelector("#high-score");
+var highScore = document.querySelector("#high-score");
 var listEl;
 var buttonEl;
 var timeStart = 75;
@@ -15,18 +15,18 @@ var x = 0
 
 var beginQuiz = function() {
     var startTime = setInterval(function(){
-        if (timeRemaining <= 0 || x === 5) {
+        if (timeStart <= -1 || x === 5) {
             clearInterval(startTime);
         } else {
-            timer.textContent = timeRemaining;
+            timer.textContent = timeStart;
         }
-        timeRemaining--;
+        timeStart--;
     }, 1000);
     firstQuestion();
 }
 
 var firstQuestion = function() {
-    if (x ===5) {
+    if (x === 5) {
         return startQuiz;
     }
     quizHeader.textContent = questions[x].title;
@@ -45,6 +45,38 @@ var firstQuestion = function() {
         buttonEl.textContent = listChoice[i];
         listEl.appendChild(buttonEl);
     }
+}
+
+var buttonHandler = function(event) {
+    var targetEl = event.target;
+    if (targetEl.matches(".btn-quizbtn")) {
+        if(targetEl.textContent === questionsAnswer) {
+            questionsScore += 10;
+            console.log(questionsScore);
+        }
+        else{
+            timeStart -= 10;
+            console.log(timeStart);
+        };
+        for (var i = 0; i < 5; i++) {
+            var list = document.getElementById([i]);
+            list.remove();
+        }
+        x++
+        firstQuestion();
+    }   
+}
+
+var endGame = function() {
+    score = Math.max(0, timeStart + questionsScore);
+    quizHeaer.textContent = "Game Over";
+    quizText.textContent = "Your Score:" + score;
+    var initials = document.createElement("input");
+    initials.setAttribute("type", "text");
+    initials.className = "text-input";
+    initials.setAttribute("placeholder", "Your initials");
+    quizContainer.appendChild(initials);
+    
 }
 
 var questions = [
@@ -101,4 +133,4 @@ var questions = [
 ];
 
 startButton.addEventListener("click", beginQuiz);
-quizContainer.addEventListener("click",);
+quizContainer.addEventListener("click", buttonHandler);
