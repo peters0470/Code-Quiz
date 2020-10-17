@@ -23,7 +23,7 @@ h3 {
 .quiz-title, .quiz-info {
     margin-top: 35px;
 }
-#quiz-button {
+#quiz-box {
     flex: 1;
     list-style: none;
     text-align: center;
