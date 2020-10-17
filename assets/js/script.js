@@ -68,6 +68,7 @@ var buttonHandler = function(event) {
     }
     if (targetEl.matches(".btn-submit")) {
         submitInitials();
+        
     }   
 
 }
@@ -92,13 +93,35 @@ var endGame = function() {
 
 var submitInitials = function() {
     var submitInitials = document.querySelector(".text-input").value;
-    var submitScore = timeStart + score;
+    var submitScore = score;
     var playerScore = {
         name: submitInitials,
         total: submitScore
     }
     leaderBoard.push(playerScore);
     localStorage.setItem("highScores", JSON.stringify(leaderBoard));
+    
+}
+
+var getGame = function() {
+    var savedScore = localStorage.getItem("highScores");
+    if (!savedScore) {
+        return false;
+    }
+    else{
+        savedScore = JSON.parse(savedScore);
+        for (var i = 0; i < savedScore.length; i++) {
+            var leaderBoards = document.createElement("li");
+            leaderBoards.className = "lbrd";
+            leaderBoards.textContent = "HighScore!"
+            highScore.appendChild(leaderBoards);
+            var previousGame = document.createElement("li");
+            previousGame.className = "prev-game";
+            previousGame.textContent = savedScore[i].name + " - " + savedScore[i].total;
+            highScore.appendChild(previousGame);
+            
+        }
+    }
 }
 
 
@@ -157,3 +180,5 @@ var questions = [
 
 startButton.addEventListener("click", beginQuiz);
 quizContainer.addEventListener("click", buttonHandler);
+
+getGame();
